@@ -1,6 +1,7 @@
 use std::collections::BTreeMap;
+use serde::Serialize;
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize)]
 pub enum Penalty {
     None,
     DriveThroughCutting,
@@ -26,7 +27,7 @@ pub enum Penalty {
     DisqualifiedExceededDriverStintLimit,
 }
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Serialize)]
 pub enum Status {
     Off,
     Replay,
@@ -34,7 +35,7 @@ pub enum Status {
     Pause,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize)]
 pub enum SessionType {
     Unknown,
     Practice,
@@ -48,7 +49,7 @@ pub enum SessionType {
     HotlapSuperPole,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize)]
 pub enum FlagType {
     None,
     Blue,
@@ -61,7 +62,7 @@ pub enum FlagType {
     Orange,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize)]
 pub enum TrackGripStatus {
     Green,
     Fast,
@@ -72,7 +73,7 @@ pub enum TrackGripStatus {
     Flooded,
 }
 
-#[derive(Clone, Debug, PartialEq, Eq)]
+#[derive(Clone, Debug, PartialEq, Eq, Serialize)]
 pub enum RainIntensity {
     NoRain,
     Drizzle,
@@ -82,7 +83,7 @@ pub enum RainIntensity {
     Thunderstorm,
 }
 
-#[derive(Clone, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Debug, Default, PartialEq, Eq, Serialize)]
 pub struct Wheels<T> {
     pub front_left: T,
     pub front_right: T,
@@ -90,14 +91,14 @@ pub struct Wheels<T> {
     pub rear_right: T,
 }
 
-#[derive(Clone, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Debug, Default, PartialEq, Eq, Serialize)]
 pub struct Vector3<T> {
     pub x: T,
     pub y: T,
     pub z: T,
 }
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, Serialize)]
 pub struct CarDamage {
     pub front: f32,
     pub rear: f32,
@@ -107,7 +108,7 @@ pub struct CarDamage {
 }
 
 /// Aids that have been currently enabled
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, Serialize)]
 pub struct Aids {
     /// Fuel consumption rate
     pub fuel_rate: f32,
@@ -126,7 +127,7 @@ pub struct Aids {
 }
 
 /// Global flags that are being waved
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, Serialize)]
 pub struct GlobalFlags {
     pub yellow: bool,
     pub yellow1: bool,
@@ -139,7 +140,7 @@ pub struct GlobalFlags {
 }
 
 /// Data selected on the pitstop mfd
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, Serialize)]
 pub struct MfdPitstop {
     pub tyre_set: i32,
     pub fuel_to_add: f32,
@@ -147,7 +148,7 @@ pub struct MfdPitstop {
 }
 
 /// Information about a time in text and in millis
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, Serialize)]
 pub struct Time {
     /// Integer in milliseconds
     pub millis: i32,
@@ -156,7 +157,7 @@ pub struct Time {
 }
 
 /// Information about the state of a single wheel
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, Serialize)]
 pub struct WheelInfo {
     /// Tyre pressure
     pub tyre_pressure: f32,
@@ -188,7 +189,7 @@ pub struct WheelInfo {
     pub disc_life: f32,
 }
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, Serialize)]
 pub struct Physics {
     /// Current step index
     pub packet_id: i32,
@@ -269,7 +270,7 @@ pub struct Physics {
 }
 
 /// Lap timing information
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, Serialize)]
 pub struct LapTiming {
     /// Current lap time
     pub current: Time,
@@ -287,7 +288,7 @@ pub struct LapTiming {
     pub last_sector_ms: i32,
 }
 
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, Serialize)]
 pub struct Graphics {
     /// Current step index
     pub packet_id: i32,
@@ -393,7 +394,7 @@ pub struct Graphics {
 }
 
 /// Data that never changes during a session
-#[derive(Clone, Debug, PartialEq)]
+#[derive(Clone, Debug, PartialEq, Serialize)]
 pub struct StaticData {
     /// Shared memory version
     pub sm_version: String,
